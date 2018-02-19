@@ -66,8 +66,9 @@ class TestGame {
         println(greatAfterBlowout)
         println(terribleAfterBlowout)
 
-        val expectedGreatRating = greatRating + 1
-        val expectedTerribleRating = terribleRating - 1
+        // any change to the impact formula will cause these to change, of course
+        val expectedGreatRating =  1801
+        val expectedTerribleRating = 1299
 
         assertEquals(expectedGreatRating, greatAfterBlowout.rating)
 
@@ -86,11 +87,11 @@ class TestGame {
                 closeLoserScore
         )
 
-        println(greatTeam)
-        println(terribleTeam)
         val (greatAfterUpset, terribleAfterUpset) = closeUpset.assessImpact(greatTeam, terribleTeam)
-        println(greatAfterUpset)
-        println(terribleAfterUpset)
+        val expectedGreatRatingAfterUpset = 1634 // any change to the impact formula will cause these to change, of course
+        val expectedTerribleRatingAfterUpset = 1466
+        assertEquals(expectedGreatRatingAfterUpset, greatAfterUpset.rating)
+        assertEquals(expectedTerribleRatingAfterUpset, terribleAfterUpset.rating)
     }
 
     @Test
