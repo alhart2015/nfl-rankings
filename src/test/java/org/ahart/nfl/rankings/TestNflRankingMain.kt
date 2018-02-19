@@ -9,7 +9,7 @@ class TestNflRankingMain {
     fun runMain() {
         var driver = NflRankingMain()
 
-        driver.test()
+        driver.main(arrayOf(""))
     }
 
     @Test
