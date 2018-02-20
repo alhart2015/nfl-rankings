@@ -1,6 +1,7 @@
 package org.ahart.nfl.rankings
 
 import org.ahart.nfl.rankings.utils.ResultsSchema
+import kotlin.math.max
 
 val SCORE_IMPACT_FACTOR = 30
 
@@ -26,15 +27,15 @@ fun createGameFromLine(line: List<String>): Game {
 }
 
 data class Game(
-        private val week: String,
-        private val day: String,
-        private val date: String,
-        private val time: String,
-        private val winner: String,
-        private val loser: String,
-        private val homeTeam: String,
-        private val winnerScore: Int,
-        private val loserScore: Int
+        val week: String,
+        val day: String,
+        val date: String,
+        val time: String,
+        val winner: String,
+        val loser: String,
+        val homeTeam: String,
+        val winnerScore: Int,
+        val loserScore: Int
 ) {
     /**
      * A game's impact affects both teams equally and in opposite amounts. A great team blowing out a bad team should
@@ -51,8 +52,8 @@ data class Game(
 
         checkRightTeams(team1, team2)
 
-        val ratingDiff = team1.rating - team2.rating
-        val scoreDiff = winnerScore - loserScore
+        val ratingDiff = max(team1.rating - team2.rating, 1) // avoid divide by 0
+        val scoreDiff = max(winnerScore - loserScore, 1)
 
         var gameImpact = scoreDiff * SCORE_IMPACT_FACTOR / ratingDiff
 
