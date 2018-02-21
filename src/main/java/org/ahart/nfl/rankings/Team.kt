@@ -4,6 +4,9 @@ package org.ahart.nfl.rankings
 //
 //}
 
+const val SAN_DIEGO_CHARGERS = "San Diego Chargers"
+const val LOS_ANGELES_CHARGERS = "Los Angeles Chargers"
+
 fun newTeam(name: String): Team {
     return Team(name, 0, 0, 1500)
 }

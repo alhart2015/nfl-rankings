@@ -3,7 +3,7 @@ package org.ahart.nfl.rankings
 import org.ahart.nfl.rankings.utils.ResultsSchema
 import kotlin.math.max
 
-val SCORE_IMPACT_FACTOR = 30
+const val SCORE_IMPACT_FACTOR = 30
 
 fun createGameFromLine(line: List<String>): Game {
 
@@ -13,17 +13,29 @@ fun createGameFromLine(line: List<String>): Game {
         line[ResultsSchema.WINNER.ordinal]
     }
 
+    val winnerTeamName = line[ResultsSchema.WINNER.ordinal]
+    val loserTeamName = line[ResultsSchema.LOSER.ordinal]
+
+    // replace any old team names (eg San Diego Chargers) with their new name (Los Angeles Chargers)
     return Game(
             line[ResultsSchema.WEEK.ordinal],
             line[ResultsSchema.DAY.ordinal],
             line[ResultsSchema.DATE.ordinal],
             line[ResultsSchema.TIME.ordinal],
-            line[ResultsSchema.WINNER.ordinal],
-            line[ResultsSchema.LOSER.ordinal],
-            homeTeam,
+            cleanTeamName(winnerTeamName),
+            cleanTeamName(loserTeamName),
+            cleanTeamName(homeTeam),
             line[ResultsSchema.POINTS_W.ordinal].toInt(),
             line[ResultsSchema.POINTS_L.ordinal].toInt()
     )
+}
+
+fun cleanTeamName(name: String) : String {
+    var cleanName = name
+    if (name == SAN_DIEGO_CHARGERS) {
+        cleanName = LOS_ANGELES_CHARGERS
+    }
+    return cleanName
 }
 
 data class Game(
@@ -66,10 +78,14 @@ data class Game(
         val resultTeam2: Team
         if (team1.name == winner) {
             resultTeam1 = team1.copyWithRatingChange(gameImpact)
+            resultTeam1.wins++
             resultTeam2 = team2.copyWithRatingChange(-gameImpact)
+            resultTeam2.losses++
         } else {
             resultTeam1 = team1.copyWithRatingChange(-gameImpact)
+            resultTeam1.losses++
             resultTeam2 = team2.copyWithRatingChange(gameImpact)
+            resultTeam2.wins++
         }
 
 

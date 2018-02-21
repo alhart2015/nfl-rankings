@@ -14,8 +14,12 @@ class NflRankingMain {
         val games2016 = readResultsFile("game_scores_2016.txt")
         val games2017 = readResultsFile("game_scores_2017.txt")
 
-        val league2016 = evaluatePreviousSeason(games2016)
-        league2016.printByRating()
+        val league = evaluatePreviousSeason(games2016)
+        league.printByRating()
+        println()
+        league.resetForNewSeason()
+        league.update(games2017)
+        league.printByRating()
 
     }
 
@@ -31,7 +35,7 @@ class NflRankingMain {
      * @return a League object representing the state of the NFL after the 2016 season
      */
     fun evaluatePreviousSeason(games2016: List<Game>) : League {
-        val leagueAfter2016 = League(2016, 19, mutableMapOf())
+        val leagueAfter2016 = League()
         leagueAfter2016.populate(games2016)
         return leagueAfter2016
     }

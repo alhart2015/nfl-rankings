@@ -1,6 +1,5 @@
 package org.ahart.nfl.rankings
 
-import org.ahart.nfl.rankings.utils.readResultsFile
 import org.junit.Test
 
 class TestNflRankingMain {
