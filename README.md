@@ -12,3 +12,6 @@ The formula could certainly be refined, but the intent of the project
 is to demonstrate coding ability and not analytic ability. If it would
 be of interest to see a more useful set of results, please reach out
 as this can be done.
+
+Command line to run as standalone jar:
+java -jar target/nfl-rankings-1.0-SNAPSHOT-jar-with-dependencies.jar

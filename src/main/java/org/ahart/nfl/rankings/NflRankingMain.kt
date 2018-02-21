@@ -2,12 +2,12 @@ package org.ahart.nfl.rankings
 
 import org.ahart.nfl.rankings.utils.readResultsFile
 
-class NflRankingMain {
+// in case this gets built to a jar
+fun main(args: Array<String>) {
+    NflRankingMain().run()
+}
 
-    // in case this gets built to a jar
-    fun main(args: Array<String>) {
-        run()
-    }
+class NflRankingMain {
 
     fun run() {
 
