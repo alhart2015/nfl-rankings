@@ -63,16 +63,17 @@ class TestGame {
 
         val (greatAfterBlowout, terribleAfterBlowout) = blowoutBetweenGreatAndTerrible.assessImpact(greatTeam, terribleTeam)
 
-        println(greatAfterBlowout)
-        println(terribleAfterBlowout)
-
         // any change to the impact formula will cause these to change, of course
         val expectedGreatRating =  1801
         val expectedTerribleRating = 1299
 
         assertEquals(expectedGreatRating, greatAfterBlowout.rating)
+        assertEquals(1, greatAfterBlowout.wins)
+        assertEquals(0, greatAfterBlowout.losses)
 
         assertEquals(expectedTerribleRating, terribleAfterBlowout.rating)
+        assertEquals(0, terribleAfterBlowout.wins)
+        assertEquals(1, terribleAfterBlowout.losses)
 
         // a terrible team barely beating a great team should have a big impact
         val closeUpset = Game(
@@ -91,7 +92,11 @@ class TestGame {
         val expectedGreatRatingAfterUpset = 1634 // any change to the impact formula will cause these to change, of course
         val expectedTerribleRatingAfterUpset = 1466
         assertEquals(expectedGreatRatingAfterUpset, greatAfterUpset.rating)
+        assertEquals(0, greatAfterUpset.wins)
+        assertEquals(1, greatAfterUpset.losses)
         assertEquals(expectedTerribleRatingAfterUpset, terribleAfterUpset.rating)
+        assertEquals(1, terribleAfterUpset.wins)
+        assertEquals(0, terribleAfterUpset.losses)
     }
 
     @Test

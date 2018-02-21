@@ -1,12 +1,5 @@
 package org.ahart.nfl.rankings
 
-//fun createTeamLookupFromSchedule(games: List<Game>) : Map<String, Team> {
-//
-//}
-
-const val SAN_DIEGO_CHARGERS = "San Diego Chargers"
-const val LOS_ANGELES_CHARGERS = "Los Angeles Chargers"
-
 fun newTeam(name: String): Team {
     return Team(name, 0, 0, 1500)
 }
@@ -32,15 +25,4 @@ data class Team(
                 rating + delta
         )
     }
-
-//    override fun equals(other: Any?): Boolean {
-//        if (this === other) return true
-//        if (other == null || javaClass != other.javaClass) return false
-//        val that = other as Team?
-//        return name == that!!.name
-//    }
-//
-//    override fun hashCode(): Int {
-//        return name.hashCode()
-//    }
 }

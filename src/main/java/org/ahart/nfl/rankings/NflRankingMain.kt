@@ -14,11 +14,14 @@ class NflRankingMain {
         val games2016 = readResultsFile("game_scores_2016.txt")
         val games2017 = readResultsFile("game_scores_2017.txt")
 
-        val league = evaluatePreviousSeason(games2016)
+        val league = League()
+        league.populate(games2016)
+        println("League ratings after 2016")
         league.printByRating()
         println()
         league.resetForNewSeason()
         league.update(games2017)
+        println("League ratings after 2017")
         league.printByRating()
 
     }
@@ -38,13 +41,5 @@ class NflRankingMain {
         val leagueAfter2016 = League()
         leagueAfter2016.populate(games2016)
         return leagueAfter2016
-    }
-
-    fun test() {
-        val games = readResultsFile("game_scores_2017.txt")
-
-        games.subList(0, 10).forEach({
-            println(it)
-        })
     }
 }

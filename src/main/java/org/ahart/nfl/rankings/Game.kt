@@ -1,9 +1,10 @@
 package org.ahart.nfl.rankings
 
+import org.ahart.nfl.rankings.utils.LOS_ANGELES_CHARGERS
 import org.ahart.nfl.rankings.utils.ResultsSchema
+import org.ahart.nfl.rankings.utils.SAN_DIEGO_CHARGERS
+import org.ahart.nfl.rankings.utils.SCORE_IMPACT_FACTOR
 import kotlin.math.max
-
-const val SCORE_IMPACT_FACTOR = 30
 
 fun createGameFromLine(line: List<String>): Game {
 
@@ -30,7 +31,7 @@ fun createGameFromLine(line: List<String>): Game {
     )
 }
 
-fun cleanTeamName(name: String) : String {
+fun cleanTeamName(name: String): String {
     var cleanName = name
     if (name == SAN_DIEGO_CHARGERS) {
         cleanName = LOS_ANGELES_CHARGERS
@@ -60,7 +61,7 @@ data class Game(
      *
      * @return a Pair<Team, Team> (team1, team2) with each team's rating updated
      */
-    fun assessImpact(team1: Team, team2: Team) : Pair<Team, Team> {
+    fun assessImpact(team1: Team, team2: Team): Pair<Team, Team> {
 
         checkRightTeams(team1, team2)
 
@@ -92,7 +93,7 @@ data class Game(
         return Pair(resultTeam1, resultTeam2)
     }
 
-    fun wasUpset(team1: Team, team2: Team) : Boolean {
+    fun wasUpset(team1: Team, team2: Team): Boolean {
         // this check is redundant in assessImpact, but you might need it elsewhere
         checkRightTeams(team1, team2)
 
