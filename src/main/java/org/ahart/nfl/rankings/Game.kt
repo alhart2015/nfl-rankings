@@ -1,14 +1,11 @@
 package org.ahart.nfl.rankings
 
-import org.ahart.nfl.rankings.utils.LOS_ANGELES_CHARGERS
-import org.ahart.nfl.rankings.utils.ResultsSchema
-import org.ahart.nfl.rankings.utils.SAN_DIEGO_CHARGERS
-import org.ahart.nfl.rankings.utils.SCORE_IMPACT_FACTOR
+import org.ahart.nfl.rankings.utils.*
 import kotlin.math.max
 
 fun createGameFromLine(line: List<String>): Game {
 
-    val homeTeam = if (line[ResultsSchema.HOME.ordinal] == "@") {
+    val homeTeam = if (line[ResultsSchema.HOME.ordinal] == HOME_TEAM_INDICATOR) {
         line[ResultsSchema.LOSER.ordinal]
     } else {
         line[ResultsSchema.WINNER.ordinal]

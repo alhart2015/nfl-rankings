@@ -11,7 +11,7 @@ fun readResultsFile(filename: String): List<Game> {
 
     inputStream.bufferedReader().useLines { lines ->
         lines.forEach {
-            val splitLine = it.split(",")
+            val splitLine = it.split(COMMA_DELIMITER)
             try {
                 val gameFromLine = createGameFromLine(splitLine)
                 gameList.add(gameFromLine)
