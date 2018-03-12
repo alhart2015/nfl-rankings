@@ -20,9 +20,6 @@ class NflRankingMain {
         // the year, and use that (or some modification of that with regression to the mean, TBD) as the starting point
         // for the 2017 ratings.
         league.populate(games2016)
-        println("League ratings after 2016")
-        league.printByRating()
-        println()
         league.resetForNewSeason()
         league.update(games2017)
         println("League ratings after 2017")
